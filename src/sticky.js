@@ -46,6 +46,7 @@ class Sticky {
     const side = this.getAttribute('sticky-side') || 'top';
     const zIndex = this.getAttribute('sticky-z-index') || '10';
     const onStick = this.getAttribute('on-stick') || null;
+    const stickyContainerId = this.getAttribute('sticky-id') || 0;
 
     this.options = {
       topOffset: Number(offset.top) || 0,
@@ -224,7 +225,7 @@ class Sticky {
       node.tagName !== 'BODY' &&
       node.nodeType === 1
     ) {
-      if (node.hasAttribute('sticky-container')) {
+      if (node.hasAttribute(stickyContainerId ? `sticky-container-${stickyContainerId}` : 'sticky-container')) {
         return node;
       }
       node = node.parentNode;
